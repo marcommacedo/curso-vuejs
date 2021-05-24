@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriedades Armazenadas</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>Nome: {{ person.firstName }}</h2>
+        <h2>Nome completo (computed): {{ fullName }}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                person: {
+                    firstName: "Marco",
+                    lastName: "Vinicius"
+                }
+            },
+            computed: {
+                fullName: {
+                    get: function () {
+                        return `${this.person.firstName} ${this.person.lastName}`;
+                    },
+                    set: function (newValue) {
+                        let name = newValue.split(" ");
+                        this.person.firstName = name[0];
+                        this.person.lastName = name[1];
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
