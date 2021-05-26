@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas - For</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>Cidades</h2>
+        <ol>
+            <!-- <li v-for="city in cities">{{ city }}</li> -->
+            <li v-for="item in cities">{{ item.city }} - {{ item.country }}</li>
+        </ol>
+
+        <h2>Filmes</h2>
+        <ul>
+            <li v-for="(movie, index) in movies">{{ index }} - {{ movie }}</li>
+        </ul>
+
+        <h2>Empresa</h2>
+        <p v-for="(value, key, index) in company">{{ key }} - {{ value }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                // cities: ['São Paulo', 'Nova York', 'Londres', 'Rio de Janeiro']
+                cities: [{
+                        city: 'Nova York',
+                        country: 'EUA'
+                    },
+                    {
+                        city: 'São Paulo',
+                        country: 'Brasil'
+                    }
+                ],
+                movies: [
+                    'Donnie Darko',
+                    'The Arrival',
+                    'Fight Club',
+                    'Birdman'
+                ],
+                company: {
+                    name: "Facebook",
+                    year: 2004,
+                    create: "Mark"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

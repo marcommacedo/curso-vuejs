@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas - If Else</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-if="show">Marco Vinicius</h1>
+        <h3 v-if="tickets >=" key="available">Há ingressos disponíveis</h3>
+        <h3 v-else-if="tickets <= 10" key="almost">Os ingressos estão acabando.</h3>
+        <h3 v-else key="empty">Os ingressos acabaram</h3>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                show: true,
+                tickets: 100
+            }
+        })
+    </script>
+</body>
+
+</html>

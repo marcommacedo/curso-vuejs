@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas - Custom</title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-upper>{{ name }}</p>
+        <h2 v-capitalize>hello world {{ name }}</h2>
+        <!-- <h2 v-custom:param.mod1.mod2="'info'">hello world {{ name }}</h2> -->
+        <h2 v-custom="{ direction: arg, distance }">{{ name }}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        Vue.directive("upper", {
+            inserted(el) {
+                el.innerText = el.innerText.toUpperCase();
+            }
+        })
+
+        function setDirection(el, binding) {
+            el.style.margin = 0;
+
+            let direction = binding.value.direction.toLowerCase();
+            let value = binding.value.distance;
+
+            switch (direction) {
+                case 'left':
+                case 'right':
+                case 'bottom':
+                case 'top':
+                    let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+                    eval(`el.style.margin${newDirection} = value + "px"`)
+                    break;
+                default:
+                    console.error("informe uma opção válida")
+            }
+
+            console.log(el, binding);
+        }
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                name: "Marco Vinicius",
+                arg: "left",
+                distance: 150
+            },
+            directives: {
+                capitalize: {
+                    bind(el) {
+                        // console.log("bind");
+                    },
+                    inserted(el) {
+                        let words = el.innerText.split(" ");
+
+                        words.forEach((text, index) => {
+                            words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+                        });
+
+                        el.innerText = words.join(" ");
+                        // console.log("inserted");
+                    },
+                    update(el) {
+                        // console.log("update");
+                    },
+                    unbind(el) {
+                        // console.log("unbind");
+                    }
+                },
+                custom: {
+                    bind(el, binding, vnode) {
+                        // console.log(vnode);
+                        // el.style.color = "blue";
+                        setDirection(el, binding);
+                    },
+                    update(el, binding, vnode, oldvnode) {
+                        // console.log(vnode, oldvnode)
+                        setDirection(el, binding);
+                        el.style.textDecoration = "underline";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
