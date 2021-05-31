@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style - Inline (Object)</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="tamanho da fonte" v-model="fontSizeProp">
+        <h2 :style="{ fontSize: fontSizeProp + 'px' }">Marco Vinicius</h2>
+        <hr>
+        <h2>Digite as cores</h2>
+        <input type="text" placeholder="vermelho" v-model="styleR">
+        <input type="text" placeholder="verde" v-model="styleG">
+        <input type="text" placeholder="azul" v-model="styleB">
+        <div :style="styleRGB">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit impedit et ab molestiae eligendi perferendis
+            possimus sequi corporis, reprehenderit eveniet quibusdam veniam neque cupiditate, officiis libero ratione
+            enim corrupti iure.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                fontSizeProp: 20,
+                styleR: 255,
+                styleG: 105,
+                styleB: 80
+            },
+            computed: {
+                styleRGB() {
+                    return {
+                        color: `rgb(${this.styleR}, ${this.styleG}, ${this.styleB})`
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
