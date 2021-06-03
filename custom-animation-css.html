@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <transition enter-active-class="animate__animated animate__zoomIn" leave-active-class="animate__animated animate__zoomOutDown">
+            <h2 v-if="show">Marco Vinicius</h2>
+        </transition>
+
+        <button @click="show = !show">show</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+        .first-enter-active {
+            transition: opacity .5s ease;
+        }
+
+        .first-leave-active {
+            transition: opacity .5s ease-out;
+        }
+
+        .first-enter, .first-leave-to {
+            opacity: 0;
+        }
+
+        .second-enter-active {
+            transition: all .3s linear;
+        }
+
+        .second-leave-active {
+            transition: all .5s linear;
+        }
+
+        .second-enter, .second-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="first">
+            <h2 v-if="show">Marco Vinicius</h2>
+        </transition>
+
+        <hr>
+
+        <transition name="second">
+            <div v-if="show2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio aliquid cumque ad tempora laudantium odit facere possimus aut laborum sit, repellat voluptas eligendi inventore excepturi sunt, consectetur dolores fugit nisi?
+            </div>
+        </transition>
+
+        <button @click="show2 = !show2">clique aqui</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                show: true,
+                show2: false
+            }
+        })
+    </script>
+</body>
+
+</html>
