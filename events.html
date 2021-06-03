@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="showAlert('Hello World')">clique aqui</button>
+      <hr />
+      <button @dblclick="add">add</button>
+      <h4>Você clicou {{ counter }}</h4>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+      let app = new Vue({
+        el: "#app",
+        data: {
+          counter: 0
+        },
+        methods: {
+          add() {
+            this.counter += 2;
+          },
+          showAlert(msg) {
+            alert(msg);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
