@@ -13,13 +13,14 @@
 				<div class="col-6">
 					<h2>Seu clube é: {{ myClub }}</h2>
 				</div>
-				<div class="col-6"><app-input v-model="myClub" /></div>
+				<div class="col-6"><app-input /></div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import AppSectionBanner from "./AppSectionBanner.vue";
 import AppInput from "./AppInput.vue";
 
@@ -30,13 +31,22 @@ export default {
 		AppInput
 	},
 	props: {
-		championship: String,
 		currentComponent: String
 	},
 	data() {
-		return {
-			myClub: "Hcode Treinamentos"
-		};
+		return {};
+	},
+	computed: {
+		// ...mapState(["championship"]),
+		// ...mapState({ myClub: "clubName" })
+		// championship() {
+		// 	return this.$store.getters.championship;
+		// }
+
+		...mapGetters({
+			championship: "getChampionship",
+			myClub: "getClubName"
+		})
 	}
 };
 </script>

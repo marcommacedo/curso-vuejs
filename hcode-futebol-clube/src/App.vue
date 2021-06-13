@@ -4,15 +4,13 @@
 			@select-championship="changeChampionship"
 			@change-component="changeComponent"
 		/>
-		<AppSection
-			:championship="championship"
-			:current-component="currentSectionComponent"
-		/>
+		<AppSection :current-component="currentSectionComponent" />
 		<AppFooter />
 	</div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import AppSection from "./components/AppSection.vue";
@@ -26,14 +24,11 @@ export default {
 	},
 	data() {
 		return {
-			championship: "Campeonato Brasileiro",
 			currentSectionComponent: "AppSectionBanner"
 		};
 	},
 	methods: {
-		changeChampionship(value) {
-			this.championship = value;
-		},
+		...mapActions(["changeChampionship"]),
 		changeComponent(value) {
 			let component;
 
