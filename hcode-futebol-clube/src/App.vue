@@ -1,10 +1,7 @@
 <template>
 	<div id="app">
-		<AppHeader
-			@select-championship="changeChampionship"
-			@change-component="changeComponent"
-		/>
-		<AppSection :current-component="currentSectionComponent" />
+		<AppHeader @select-championship="changeChampionship" />
+		<AppSection />
 		<AppFooter />
 	</div>
 </template>
@@ -23,27 +20,10 @@ export default {
 		AppSection
 	},
 	data() {
-		return {
-			currentSectionComponent: "AppSectionBanner"
-		};
+		return {};
 	},
 	methods: {
-		...mapActions(["changeChampionship"]),
-		changeComponent(value) {
-			let component;
-
-			switch (value) {
-				case "home":
-				default:
-					component = "AppSectionBanner";
-					break;
-				case "news":
-					component = "AppSectionNews";
-					break;
-			}
-
-			this.currentSectionComponent = component;
-		}
+		...mapActions(["changeChampionship"])
 	}
 };
 </script>

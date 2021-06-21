@@ -6,7 +6,10 @@
 			</div>
 		</div>
 
-		<component :is="currentComponent"></component>
+		<!-- <component :is="currentComponent"></component> -->
+		<transition name="fade-view" mode="out-in">
+			<router-view></router-view>
+		</transition>
 
 		<div class="container">
 			<div class="row my-club mt-5">
@@ -21,13 +24,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import AppSectionBanner from "./AppSectionBanner.vue";
 import AppInput from "./AppInput.vue";
 
 export default {
 	components: {
-		AppSectionBanner,
-		AppSectionNews: () => import("./AppSectionNews.vue"),
 		AppInput
 	},
 	props: {
@@ -51,4 +51,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-view-enter,
+.fade-view-leave-to {
+	opacity: 0;
+}
+
+.fade-view-enter-active,
+.fade-view-leave-active {
+	transition: opacity 0.5s ease-in-out;
+}
+</style>

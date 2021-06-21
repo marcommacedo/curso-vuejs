@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="section-news">
 		<div class="container">
 			<app-section-news-individual
 				v-for="notice in news"
@@ -9,7 +9,11 @@
 				:news-date="notice.date"
 			>
 				<template #title>
-					<h2>{{ notice.title }}</h2>
+					<router-link
+						tag="h2"
+						:to="{ name: 'notice', params: { id: notice.id } }"
+						>{{ notice.title }}</router-link
+					>
 				</template>
 				<p>{{ notice.content | truncate(200) }}</p>
 			</app-section-news-individual>
@@ -32,12 +36,17 @@ export default {
 		...mapGetters({
 			news: "getNews"
 		})
+	},
+	methods: {
+		goToPage(page) {
+			this.$router.push(page);
+		}
 	}
 };
 </script>
 
-<style scoped>
-section {
+<style>
+.section-news {
 	padding: 50px 0;
 	margin-top: 50px;
 	background: #f37520;
